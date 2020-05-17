@@ -1,5 +1,5 @@
-struct NN {
-    layers: Vec<usize>,
+struct NN <'a> {
+    layers: &'a Vec<usize>,
     weights: Option<Vec<Vec<Vec<f64>>>>,
     bias: Option<Vec<Vec<f64>>>
 }
@@ -17,7 +17,7 @@ fn make_nd_array(rows: usize, cols: usize) -> Vec<Vec<f64>> {
     return matrix
 }
 
-impl NN {
+impl NN <'_> {
     fn init(&mut self) -> () {
         let layer_length: &usize = &self.layers.len();
         let excluding_last: usize = layer_length - 1;
