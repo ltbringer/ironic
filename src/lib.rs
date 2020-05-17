@@ -34,8 +34,20 @@ impl NN {
 
 #[cfg(test)]
 mod tests {
+    use crate::NN;
+
     #[test]
     fn it_works() {
-        assert_eq!(2 + 2, 4);
+        let layers = vec![2, 3, 1];
+        let mut nn = NN { layers, bias: None, weights: None };
+        nn.init();
+        assert_eq!(nn.layers.len(), 3);
+        match nn.weights {
+            Some(w) => {
+                println!("ok {:?}", w);
+                assert_eq!(6, 6);
+            },
+            None => panic!("Something's wrong I can feel it.")
+        }
     }
 }
